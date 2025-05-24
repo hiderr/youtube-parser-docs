@@ -135,216 +135,339 @@
         color: #666;
         font-style: italic;
       }
+      .screenshot {
+        max-width: 100%;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        margin: 15px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .step-number {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: #2196f3;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      .keyboard-key {
+        display: inline-block;
+        padding: 3px 8px;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: monospace;
+        margin: 0 2px;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>YouTube Comments Parser</h1>
+      <h1>Как скачать комментарии с YouTube</h1>
+
       <div class="alert">
         <h3>👋 Добро пожаловать!</h3>
         <p>
-          Это приложение поможет вам получить и проанализировать комментарии с
-          YouTube видео. Установка займёт всего 5 минут.
+          Это простая программа, которая поможет вам скачать комментарии с
+          любого видео на YouTube. Установка займёт около 5 минут.
         </p>
       </div>
 
       <div class="os-select">
-        <p>Выберите вашу операционную систему:</p>
-        <button onclick="selectOS('windows')" id="windowsBtn">Windows</button>
-        <button onclick="selectOS('mac')" id="macBtn">Mac</button>
+        <p>Нажмите на кнопку с вашей системой:</p>
+        <button onclick="selectOS('windows')" id="windowsBtn">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/888/888882.png"
+            width="20"
+            height="20"
+            alt="Windows"
+            style="vertical-align: middle"
+          />
+          Windows
+        </button>
+        <button onclick="selectOS('mac')" id="macBtn">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2/2235.png"
+            width="20"
+            height="20"
+            alt="Mac"
+            style="vertical-align: middle"
+          />
+          Mac
+        </button>
       </div>
 
       <div class="step">
-        <h2>📥 Шаг 1: Установка Docker Desktop</h2>
+        <h2>
+          <span class="step-number">1</span>
+          Установите Docker Desktop
+        </h2>
+
         <p>
-          Docker - это программа, которая нужна для запуска нашего приложения.
-          Это абсолютно безопасно и бесплатно.
+          Docker - это безопасная бесплатная программа, которая нужна для работы
+          нашего приложения.
         </p>
 
         <div class="tip">
-          <strong>Почему Docker?</strong> Docker позволяет запускать приложения
-          на любом компьютере одинаково, независимо от настроек системы. Это как
-          контейнер, в котором есть всё необходимое для работы программы.
+          <strong>Что такое Docker?</strong><br />
+          Представьте, что Docker - это как коробка, в которой уже есть всё
+          необходимое для работы программы. Вам не нужно ничего настраивать,
+          просто установите Docker и всё заработает.
         </div>
 
         <p><strong>Как установить:</strong></p>
         <ol>
-          <li>Скачайте Docker Desktop по кнопке ниже</li>
-          <li>Установите его как обычную программу</li>
-          <li>Перезагрузите компьютер</li>
           <li>
-            Запустите Docker Desktop из меню Пуск (Windows) или папки Программы
-            (Mac)
+            Нажмите на кнопку "Скачать Docker Desktop"<br />
+            <a
+              href="https://www.docker.com/products/docker-desktop"
+              target="_blank"
+              class="download-button"
+            >
+              <img
+                src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"
+                width="20"
+                height="20"
+                alt="Docker"
+                style="vertical-align: middle"
+              />
+              Скачать Docker Desktop
+            </a>
+          </li>
+          <li>
+            Когда файл скачается, нажмите на него два раза<br />
+            <img
+              src="docker-install.png"
+              alt="Установка Docker"
+              class="screenshot"
+            />
+          </li>
+          <li>
+            Нажимайте "Далее" ("Next") во всех окнах установки<br />
+            <img
+              src="docker-install-steps.png"
+              alt="Шаги установки Docker"
+              class="screenshot"
+            />
+          </li>
+          <li>Когда установка закончится, перезагрузите компьютер</li>
+          <li>
+            После перезагрузки найдите и запустите Docker Desktop:
+            <ul>
+              <li>
+                На Windows: нажмите кнопку "Пуск" (значок Windows в левом нижнем
+                углу) и найдите "Docker Desktop"
+              </li>
+              <li>
+                На Mac: откройте папку "Программы" и найдите там Docker Desktop
+              </li>
+            </ul>
+            <img
+              src="docker-desktop-start.png"
+              alt="Запуск Docker Desktop"
+              class="screenshot"
+            />
           </li>
         </ol>
 
-        <p>
-          <a
-            href="https://www.docker.com/products/docker-desktop"
-            target="_blank"
-            class="download-button"
-          >
-            Скачать Docker Desktop
-          </a>
-        </p>
-
         <div class="warning">
-          <strong>Важно:</strong> Дождитесь полного запуска Docker Desktop. Это
-          можно понять по значку кита в трее (Windows) или в строке меню (Mac).
+          <strong>Важно:</strong> Дождитесь, пока Docker Desktop полностью
+          запустится. Вы увидите значок кита в правом нижнем углу экрана
+          (Windows) или вверху экрана (Mac).
+          <img
+            src="docker-running.png"
+            alt="Docker запущен"
+            class="screenshot"
+          />
         </div>
       </div>
 
       <div class="step">
-        <h2>📋 Шаг 2: Скачайте файл настроек</h2>
-        <p>
-          Этот файл содержит настройки для запуска приложения. Просто скачайте
-          его и запомните, куда он сохранился.
-        </p>
+        <h2>
+          <span class="step-number">2</span>
+          Скачайте наше приложение
+        </h2>
 
-        <p>
-          <a href="docker-compose.yml" download class="download-button"
-            >Скачать файл настроек</a
-          >
-        </p>
-
-        <div class="tip">
-          <strong>Совет:</strong> Рекомендуем создать новую папку для приложения
-          и сохранить файл туда. Например, на рабочем столе создайте папку
-          "YouTube Parser".
-        </div>
+        <ol>
+          <li>
+            Создайте на рабочем столе папку с названием "YouTube Parser"<br />
+            <img
+              src="create-folder.png"
+              alt="Создание папки"
+              class="screenshot"
+            />
+          </li>
+          <li>
+            Скачайте файл настроек, нажав на кнопку ниже:<br />
+            <a href="docker-compose.yml" download class="download-button">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/4208/4208397.png"
+                width="20"
+                height="20"
+                alt="Download"
+                style="vertical-align: middle"
+              />
+              Скачать файл настроек
+            </a>
+          </li>
+          <li>
+            Переместите скачанный файл в созданную папку "YouTube Parser"<br />
+            <img
+              src="move-file.png"
+              alt="Перемещение файла"
+              class="screenshot"
+            />
+          </li>
+        </ol>
       </div>
 
       <div class="windows-instructions">
         <div class="step">
-          <h2>▶️ Шаг 3: Запуск приложения (Windows)</h2>
-          <p><strong>3.1. Откройте командную строку:</strong></p>
-          <ul>
-            <li>Нажмите Win + R на клавиатуре</li>
-            <li>Введите <strong>cmd</strong> и нажмите Enter</li>
-          </ul>
+          <h2>
+            <span class="step-number">3</span>
+            Запуск на Windows
+          </h2>
 
-          <p><strong>3.2. Перейдите в папку с файлом:</strong></p>
-          <ul>
+          <ol>
             <li>
-              Если файл на рабочем столе, введите:
-              <code>cd Desktop\YouTube Parser</code>
+              Нажмите правой кнопкой мыши на папку "YouTube Parser" и выберите
+              "Открыть в терминале"<br />
+              <img
+                src="windows-open-terminal.png"
+                alt="Открытие терминала Windows"
+                class="screenshot"
+              />
             </li>
             <li>
-              Или просто перетащите папку из проводника в окно командной строки
-            </li>
-          </ul>
-
-          <p><strong>3.3. Запустите приложение:</strong></p>
-          <div class="code-block">
-            <button class="copy-button" onclick="copyCode('windows-code')">
-              Копировать
-            </button>
-            <pre id="windows-code">
+              В открывшемся черном окне скопируйте и вставьте эти команды:<br />
+              <div class="code-block">
+                <button class="copy-button" onclick="copyCode('windows-code')">
+                  Копировать
+                </button>
+                <pre id="windows-code">
 docker-compose pull
 docker-compose up -d</pre
-            >
-          </div>
-          <p class="note">
-            Просто скопируйте эти команды и вставьте в командную строку (правый
-            клик → Вставить)
-          </p>
+                >
+              </div>
+              <p class="note">
+                Чтобы вставить текст в черное окно, нажмите правой кнопкой мыши
+                и выберите "Вставить"
+              </p>
+              <img
+                src="windows-paste-commands.png"
+                alt="Вставка команд Windows"
+                class="screenshot"
+              />
+            </li>
+          </ol>
         </div>
       </div>
 
       <div class="mac-instructions">
         <div class="step">
-          <h2>▶️ Шаг 3: Запуск приложения (Mac)</h2>
-          <p><strong>3.1. Откройте Terminal:</strong></p>
-          <ul>
-            <li>Откройте Finder</li>
-            <li>В верхнем меню: Программы → Утилиты → Terminal</li>
-          </ul>
+          <h2>
+            <span class="step-number">3</span>
+            Запуск на Mac
+          </h2>
 
-          <p><strong>3.2. Перейдите в папку с файлом:</strong></p>
-          <ul>
+          <ol>
             <li>
-              Если файл на рабочем столе:
-              <code>cd Desktop/YouTube\ Parser</code>
+              Откройте программу Terminal:
+              <ul>
+                <li>
+                  Нажмите <span class="keyboard-key">⌘</span> +
+                  <span class="keyboard-key">Пробел</span>
+                </li>
+                <li>Напишите "Terminal" и нажмите Enter</li>
+              </ul>
+              <img
+                src="mac-open-terminal.png"
+                alt="Открытие Terminal на Mac"
+                class="screenshot"
+              />
             </li>
-            <li>Или просто перетащите папку из Finder в окно Terminal</li>
-          </ul>
-
-          <p><strong>3.3. Запустите приложение:</strong></p>
-          <div class="code-block">
-            <button class="copy-button" onclick="copyCode('mac-code')">
-              Копировать
-            </button>
-            <pre id="mac-code">
+            <li>
+              Перетащите папку "YouTube Parser" в окно Terminal<br />
+              <img
+                src="mac-drag-folder.png"
+                alt="Перетаскивание папки в Terminal"
+                class="screenshot"
+              />
+            </li>
+            <li>Нажмите Enter на клавиатуре</li>
+            <li>
+              Скопируйте и вставьте эти команды:<br />
+              <div class="code-block">
+                <button class="copy-button" onclick="copyCode('mac-code')">
+                  Копировать
+                </button>
+                <pre id="mac-code">
 docker-compose pull
 docker-compose up -d</pre
-            >
-          </div>
-          <p class="note">
-            Скопируйте команды и вставьте в Terminal (Command + V)
-          </p>
+                >
+              </div>
+              <p class="note">
+                Чтобы вставить текст в Terminal, нажмите
+                <span class="keyboard-key">⌘</span> +
+                <span class="keyboard-key">V</span>
+              </p>
+              <img
+                src="mac-paste-commands.png"
+                alt="Вставка команд Mac"
+                class="screenshot"
+              />
+            </li>
+          </ol>
         </div>
       </div>
 
       <div class="step">
-        <h2>🌐 Шаг 4: Откройте приложение</h2>
-        <p>После успешного запуска:</p>
+        <h2>
+          <span class="step-number">4</span>
+          Откройте приложение
+        </h2>
+
         <ol>
-          <li>Откройте любой браузер (Chrome, Firefox, Safari)</li>
+          <li>Откройте любой браузер (например, Chrome или Safari)</li>
           <li>
-            Введите в адресной строке:
-            <a href="http://localhost:8101" target="_blank"
-              >http://localhost:8101</a
-            >
+            Скопируйте и вставьте эту ссылку в адресную строку браузера:<br />
+            <div class="code-block">
+              <button class="copy-button" onclick="copyCode('url-code')">
+                Копировать
+              </button>
+              <pre id="url-code">http://localhost:8101</pre>
+            </div>
+            <img
+              src="browser-address.png"
+              alt="Адресная строка браузера"
+              class="screenshot"
+            />
           </li>
         </ol>
 
         <div class="warning">
-          <strong>Важно:</strong> Если страница не открывается:
-          <ul>
-            <li>Убедитесь, что Docker Desktop запущен</li>
-            <li>Подождите 30 секунд и попробуйте снова</li>
-            <li>Проверьте, что порт 8101 не занят другими программами</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="step">
-        <h2>⚙️ Управление приложением</h2>
-        <p>Вот основные команды для управления приложением:</p>
-
-        <div class="code-block">
-          <button class="copy-button" onclick="copyCode('manage-code')">
-            Копировать
-          </button>
-          <pre id="manage-code">
-# Остановить приложение:
-docker-compose down
-
-# Перезапустить:
-docker-compose restart
-
-# Обновить до последней версии:
-docker-compose pull && docker-compose up -d</pre
-          >
-        </div>
-
-        <div class="tip">
-          <strong>Подсказка:</strong> Приложение автоматически запускается при
-          старте компьютера. Если нужно остановить - используйте команду
-          <code>docker-compose down</code>
+          <strong>Если страница не открывается:</strong>
+          <ol>
+            <li>
+              Проверьте, запущен ли Docker Desktop (должен быть значок кита)
+            </li>
+            <li>Подождите 30 секунд и попробуйте обновить страницу</li>
+            <li>Если всё равно не работает, перезапустите Docker Desktop</li>
+          </ol>
         </div>
       </div>
 
       <div class="step">
         <h2>❓ Нужна помощь?</h2>
-        <p>Если у вас возникли проблемы:</p>
+        <p>Если что-то не получается:</p>
         <ol>
-          <li>Проверьте, что Docker Desktop запущен и работает</li>
-          <li>
-            Попробуйте перезапустить приложение командой
-            <code>docker-compose restart</code>
-          </li>
-          <li>Создайте issue на GitHub с описанием проблемы</li>
+          <li>Напишите нам на почту support@example.com</li>
+          <li>Или в телеграм @support_bot</li>
+          <li>Мы поможем вам установить программу</li>
         </ol>
       </div>
     </div>
