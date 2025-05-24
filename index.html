@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Comments Parser - Установка</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .step {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fff;
+        transition: all 0.3s ease;
+      }
+      .step:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .step h2 {
+        color: #2196f3;
+        margin-top: 0;
+      }
+      .code-block {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: monospace;
+        position: relative;
+        overflow-x: auto;
+      }
+      .copy-button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: #2196f3;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .copy-button:hover {
+        background: #1976d2;
+      }
+      .os-select {
+        margin-bottom: 20px;
+      }
+      .os-select button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background: #e0e0e0;
+      }
+      .os-select button.active {
+        background: #2196f3;
+        color: white;
+      }
+      .windows-instructions,
+      .mac-instructions {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
+      .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+      }
+      .download-button {
+        display: inline-block;
+        background: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .download-button:hover {
+        background: #388e3c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>YouTube Comments Parser</h1>
+      <div class="alert">
+        ⚡ Простая установка через Docker. Работает на Windows и Mac.
+      </div>
+
+      <div class="os-select">
+        <button onclick="selectOS('windows')" id="windowsBtn">Windows</button>
+        <button onclick="selectOS('mac')" id="macBtn">Mac</button>
+      </div>
+
+      <div class="step">
+        <h2>Шаг 1: Установка Docker Desktop</h2>
+        <p>1. Скачайте и установите Docker Desktop:</p>
+        <p>
+          <a
+            href="https://www.docker.com/products/docker-desktop"
+            target="_blank"
+            class="download-button"
+            >Скачать Docker Desktop</a
+          >
+        </p>
+        <p>2. После установки перезагрузите компьютер</p>
+        <p>3. Запустите Docker Desktop</p>
+      </div>
+
+      <div class="step">
+        <h2>Шаг 2: Скачайте файл конфигурации</h2>
+        <p>Скачайте файл docker-compose.yml:</p>
+        <p>
+          <a href="docker-compose.yml" download class="download-button"
+            >Скачать docker-compose.yml</a
+          >
+        </p>
+      </div>
+
+      <div class="windows-instructions">
+        <div class="step">
+          <h2>Шаг 3: Запуск приложения (Windows)</h2>
+          <p>1. Нажмите Win + R, введите cmd и нажмите Enter</p>
+          <p>2. Перейдите в папку с файлом docker-compose.yml</p>
+          <p>3. Скопируйте и вставьте следующие команды:</p>
+          <div class="code-block">
+            <button class="copy-button" onclick="copyCode('windows-code')">
+              Копировать
+            </button>
+            <pre id="windows-code">
+docker-compose pull
+docker-compose up -d</pre
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="mac-instructions">
+        <div class="step">
+          <h2>Шаг 3: Запуск приложения (Mac)</h2>
+          <p>1. Откройте Terminal (Finder → Программы → Утилиты → Terminal)</p>
+          <p>2. Перейдите в папку с файлом docker-compose.yml</p>
+          <p>3. Скопируйте и вставьте следующие команды:</p>
+          <div class="code-block">
+            <button class="copy-button" onclick="copyCode('mac-code')">
+              Копировать
+            </button>
+            <pre id="mac-code">
+docker-compose pull
+docker-compose up -d</pre
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Шаг 4: Использование</h2>
+        <p>1. Откройте браузер</p>
+        <p>
+          2. Перейдите по адресу:
+          <a href="http://localhost:8101" target="_blank"
+            >http://localhost:8101</a
+          >
+        </p>
+      </div>
+
+      <div class="step">
+        <h2>Управление приложением</h2>
+        <div class="code-block">
+          <button class="copy-button" onclick="copyCode('manage-code')">
+            Копировать
+          </button>
+          <pre id="manage-code">
+# Остановить приложение:
+docker-compose down
+
+# Перезапустить:
+docker-compose restart
+
+# Обновить:
+docker-compose pull && docker-compose up -d</pre
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function selectOS(os) {
+        document
+          .querySelector('.windows-instructions')
+          .classList.remove('show');
+        document.querySelector('.mac-instructions').classList.remove('show');
+        document.querySelector(`.${os}-instructions`).classList.add('show');
+
+        document.getElementById('windowsBtn').classList.remove('active');
+        document.getElementById('macBtn').classList.remove('active');
+        document.getElementById(`${os}Btn`).classList.add('active');
+      }
+
+      function copyCode(elementId) {
+        const codeBlock = document.getElementById(elementId);
+        const textArea = document.createElement('textarea');
+        textArea.value = codeBlock.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'Скопировано!';
+        setTimeout(() => {
+          button.textContent = originalText;
+        }, 2000);
+      }
+
+      // По умолчанию показываем инструкции для Windows
+      selectOS('windows');
+    </script>
+  </body>
+</html>
