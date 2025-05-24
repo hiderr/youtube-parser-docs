@@ -27,15 +27,13 @@
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         background: #fff;
-        transition: all 0.3s ease;
-      }
-      .step:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       .step h2 {
         color: #2196f3;
         margin-top: 0;
         font-size: 1.5em;
+        display: flex;
+        align-items: center;
       }
       .code-block {
         background: #f8f9fa;
@@ -56,6 +54,7 @@
         padding: 5px 10px;
         border-radius: 4px;
         cursor: pointer;
+        transition: background 0.3s;
       }
       .copy-button:hover {
         background: #1976d2;
@@ -64,19 +63,27 @@
         margin-bottom: 20px;
         text-align: center;
       }
-      .os-select button {
-        padding: 15px 30px;
+      .os-button {
+        padding: 12px 24px;
         margin: 0 10px;
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
         cursor: pointer;
-        background: #e0e0e0;
         font-size: 1.1em;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
-      .os-select button.active {
+      .os-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .os-button.active {
         background: #2196f3;
         color: white;
+      }
+      .os-button.active svg path {
+        fill: white;
       }
       .windows-instructions,
       .mac-instructions {
@@ -89,6 +96,8 @@
         padding: 20px;
         margin-bottom: 20px;
         border-radius: 4px;
+      }
+      .info {
         background: #e3f2fd;
         border: 1px solid #90caf9;
         color: #1565c0;
@@ -97,50 +106,11 @@
         background: #fff3e0;
         border: 1px solid #ffe0b2;
         color: #e65100;
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 4px;
       }
-      .download-button {
-        display: inline-block;
-        background: #4caf50;
-        color: white;
-        padding: 12px 24px;
-        text-decoration: none;
-        border-radius: 4px;
-        margin: 10px 0;
-        font-size: 1.1em;
-        transition: all 0.3s ease;
-      }
-      .download-button:hover {
-        background: #388e3c;
-        transform: translateY(-2px);
-      }
-      .tip {
-        background: #f3e5f5;
-        border: 1px solid #e1bee7;
-        color: #6a1b9a;
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 4px;
-      }
-      img {
-        max-width: 100%;
-        border-radius: 4px;
-        margin: 10px 0;
-        border: 1px solid #e0e0e0;
-      }
-      .note {
-        font-size: 0.9em;
-        color: #666;
-        font-style: italic;
-      }
-      .screenshot {
-        max-width: 100%;
-        border: 2px solid #e0e0e0;
-        border-radius: 8px;
-        margin: 15px 0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      .success {
+        background: #e8f5e9;
+        border: 1px solid #a5d6a7;
+        color: #2e7d32;
       }
       .step-number {
         display: inline-block;
@@ -169,7 +139,7 @@
     <div class="container">
       <h1>Как скачать комментарии с YouTube</h1>
 
-      <div class="alert">
+      <div class="alert info">
         <h3>👋 Добро пожаловать!</h3>
         <p>
           Это простая программа, которая поможет вам скачать комментарии с
@@ -178,190 +148,266 @@
       </div>
 
       <div class="os-select">
-        <p>Нажмите на кнопку с вашей системой:</p>
-        <button onclick="selectOS('windows')" id="windowsBtn">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/888/888882.png"
-            width="20"
-            height="20"
-            alt="Windows"
-            style="vertical-align: middle"
-          />
+        <p>Выберите вашу операционную систему:</p>
+        <button onclick="selectOS('windows')" id="windowsBtn" class="os-button">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 88 88"
+            style="vertical-align: middle; margin-right: 8px"
+          >
+            <path
+              d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
+              fill="#00a4ef"
+            />
+          </svg>
           Windows
         </button>
-        <button onclick="selectOS('mac')" id="macBtn">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2/2235.png"
-            width="20"
-            height="20"
-            alt="Mac"
-            style="vertical-align: middle"
-          />
+        <button onclick="selectOS('mac')" id="macBtn" class="os-button">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 384 512"
+            style="vertical-align: middle; margin-right: 8px"
+          >
+            <path
+              d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"
+              fill="#000000"
+            />
+          </svg>
           Mac
         </button>
       </div>
 
       <div class="step">
-        <h2>
-          <span class="step-number">1</span>
-          Установите Docker Desktop
-        </h2>
-
-        <p>
-          Docker - это безопасная бесплатная программа, которая нужна для работы
-          нашего приложения.
-        </p>
-
-        <div class="tip">
-          <strong>Что такое Docker?</strong><br />
-          Представьте, что Docker - это как коробка, в которой уже есть всё
-          необходимое для работы программы. Вам не нужно ничего настраивать,
-          просто установите Docker и всё заработает.
-        </div>
-
-        <p><strong>Как установить:</strong></p>
+        <h2><span class="step-number">1</span> Установите Docker Desktop</h2>
         <ol>
           <li>
-            Нажмите на кнопку "Скачать Docker Desktop"<br />
+            Скачайте Docker Desktop с официального сайта:
             <a
               href="https://www.docker.com/products/docker-desktop"
               target="_blank"
-              class="download-button"
+              >https://www.docker.com/products/docker-desktop</a
             >
-              <img
-                src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"
-                width="20"
-                height="20"
-                alt="Docker"
-                style="vertical-align: middle"
-              />
-              Скачать Docker Desktop
-            </a>
           </li>
+          <li>Запустите скачанный установщик и следуйте инструкциям</li>
+          <li>После установки перезагрузите компьютер</li>
           <li>
-            Когда файл скачается, нажмите на него два раза<br />
-            <img
-              src="docker-install.png"
-              alt="Установка Docker"
-              class="screenshot"
-            />
-          </li>
-          <li>
-            Нажимайте "Далее" ("Next") во всех окнах установки<br />
-            <img
-              src="docker-install-steps.png"
-              alt="Шаги установки Docker"
-              class="screenshot"
-            />
-          </li>
-          <li>Когда установка закончится, перезагрузите компьютер</li>
-          <li>
-            После перезагрузки найдите и запустите Docker Desktop:
+            Запустите Docker Desktop:
             <ul>
               <li>
-                На Windows: нажмите кнопку "Пуск" (значок Windows в левом нижнем
-                углу) и найдите "Docker Desktop"
+                Windows: нажмите кнопку "Пуск", найдите и запустите Docker
+                Desktop
               </li>
               <li>
-                На Mac: откройте папку "Программы" и найдите там Docker Desktop
+                Mac: откройте папку "Программы" и запустите Docker Desktop
               </li>
             </ul>
-            <img
-              src="docker-desktop-start.png"
-              alt="Запуск Docker Desktop"
-              class="screenshot"
-            />
           </li>
         </ol>
-
-        <div class="warning">
-          <strong>Важно:</strong> Дождитесь, пока Docker Desktop полностью
-          запустится. Вы увидите значок кита в правом нижнем углу экрана
-          (Windows) или вверху экрана (Mac).
-          <img
-            src="docker-running.png"
-            alt="Docker запущен"
-            class="screenshot"
-          />
+        <div class="alert warning">
+          <strong>Важно:</strong> Дождитесь полного запуска Docker Desktop. В
+          правом нижнем углу (Windows) или вверху (Mac) появится значок кита 🐳
         </div>
       </div>
 
       <div class="step">
-        <h2>
-          <span class="step-number">2</span>
-          Скачайте наше приложение
-        </h2>
-
+        <h2><span class="step-number">2</span> Создайте рабочую папку</h2>
         <ol>
+          <li>Создайте на рабочем столе папку с названием "YouTube Parser"</li>
           <li>
-            Создайте на рабочем столе папку с названием "YouTube Parser"<br />
-            <img
-              src="create-folder.png"
-              alt="Создание папки"
-              class="screenshot"
-            />
-          </li>
-          <li>
-            Скачайте файл настроек, нажав на кнопку ниже:<br />
-            <a href="docker-compose.yml" download class="download-button">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/4208/4208397.png"
-                width="20"
-                height="20"
-                alt="Download"
-                style="vertical-align: middle"
-              />
-              Скачать файл настроек
-            </a>
-          </li>
-          <li>
-            Переместите скачанный файл в созданную папку "YouTube Parser"<br />
-            <img
-              src="move-file.png"
-              alt="Перемещение файла"
-              class="screenshot"
-            />
+            Скачайте файл настроек и поместите его в созданную папку:
+            <p style="text-align: center; margin: 20px 0">
+              <a
+                href="docker-compose.yml"
+                download
+                class="download-button"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  background: #4caf50;
+                  color: white;
+                  padding: 12px 24px;
+                  text-decoration: none;
+                  border-radius: 8px;
+                  font-size: 1.1em;
+                  transition: all 0.3s;
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  style="margin-right: 8px"
+                >
+                  <path
+                    d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
+                    fill="currentColor"
+                  />
+                </svg>
+                Скачать файл настроек
+              </a>
+            </p>
           </li>
         </ol>
       </div>
 
       <div class="windows-instructions">
         <div class="step">
-          <h2>
-            <span class="step-number">3</span>
-            Запуск на Windows
-          </h2>
-
+          <h2><span class="step-number">3</span> Запуск на Windows</h2>
           <ol>
             <li>
-              Нажмите правой кнопкой мыши на папку "YouTube Parser" и выберите
-              "Открыть в терминале"<br />
-              <img
-                src="windows-open-terminal.png"
-                alt="Открытие терминала Windows"
-                class="screenshot"
-              />
+              Откройте PowerShell любым из способов:
+              <ul style="margin-bottom: 15px">
+                <li>
+                  <strong>Способ 1 (рекомендуемый):</strong>
+                  <ol>
+                    <li>
+                      Нажмите правой кнопкой мыши на кнопку "Пуск" (или клавиши
+                      <span
+                        class="keyboard-key"
+                        style="display: inline-flex; align-items: center"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 88 88"
+                          style="margin-right: 2px"
+                        >
+                          <path
+                            d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
+                            fill="#00a4ef"
+                          />
+                        </svg>
+                        Win</span
+                      >
+                      + <span class="keyboard-key">X</span>)
+                    </li>
+                    <li>
+                      В появившемся меню выберите "Windows PowerShell" или
+                      "Windows Terminal"
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <strong>Способ 2:</strong>
+                  <ol>
+                    <li>
+                      Нажмите
+                      <span
+                        class="keyboard-key"
+                        style="display: inline-flex; align-items: center"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 88 88"
+                          style="margin-right: 2px"
+                        >
+                          <path
+                            d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
+                            fill="#00a4ef"
+                          />
+                        </svg>
+                        Win</span
+                      >
+                      + <span class="keyboard-key">R</span>
+                    </li>
+                    <li>Введите <code>powershell</code></li>
+                    <li>Нажмите Enter</li>
+                  </ol>
+                </li>
+                <li>
+                  <strong>Способ 3:</strong>
+                  <ol>
+                    <li>
+                      Нажмите кнопку "Пуск"
+                      <span style="color: #666"
+                        >(кнопка с логотипом Windows
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 88 88"
+                          style="vertical-align: middle"
+                        >
+                          <path
+                            d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
+                            fill="#00a4ef"
+                          />
+                        </svg>
+                        в левом нижнем углу экрана)</span
+                      >
+                    </li>
+                    <li>Начните вводить "PowerShell"</li>
+                    <li>
+                      Нажмите на "Windows PowerShell" в результатах поиска
+                    </li>
+                  </ol>
+                </li>
+              </ul>
+              <div class="alert info">
+                <strong>Примечание:</strong> Если вы видите "Windows Terminal"
+                вместо "PowerShell" - это нормально, выбирайте его. Windows
+                Terminal - это новая, улучшенная версия командной строки.
+              </div>
             </li>
             <li>
-              В открывшемся черном окне скопируйте и вставьте эти команды:<br />
+              Выполните команду в PowerShell для перехода в папку:
+              <div class="alert info" style="margin: 10px 0">
+                <strong>Пошаговая инструкция:</strong>
+                <ol style="margin-top: 5px">
+                  1. Нажмите правой кнопкой мыши на папку "YouTube Parser" на
+                  рабочем столе<br />
+                  2. Выберите "Копировать как путь" (или "Copy as path" в
+                  английской Windows)<br />
+                  3. Введите команду
+                  <code>cd</code>
+                  и пробел в PowerShell<br />
+                  4. Вставьте скопированный путь (правый клик → Вставить)<br />
+                  5. Нажмите Enter для выполнения команды
+                </ol>
+              </div>
               <div class="code-block">
-                <button class="copy-button" onclick="copyCode('windows-code')">
+                <button
+                  class="copy-button"
+                  onclick="copyCode('windows-cd-code')"
+                >
                   Копировать
                 </button>
-                <pre id="windows-code">
+                <pre id="windows-cd-code">
+cd "C:\Users\ИмяПользователя\Desktop\YouTube Parser"</pre
+                >
+              </div>
+              <div class="alert info" style="margin-top: 10px">
+                <strong>Примечание:</strong> В вашем случае путь будет другим,
+                зависящим от имени пользователя и расположения папки.
+              </div>
+            </li>
+            <li>
+              Запустите приложение:
+              <div class="alert info" style="margin: 10px 0">
+                <strong>Как запустить:</strong>
+                <ol style="margin-top: 5px">
+                  1. Скопируйте команды ниже, нажав кнопку "Копировать"<br />
+                  2. Вставьте их в PowerShell (правый клик → Вставить)<br />
+                  3. Нажмите Enter для выполнения<br />
+                  4. Дождитесь завершения установки (это может занять несколько
+                  минут)
+                </ol>
+              </div>
+              <div class="code-block">
+                <button
+                  class="copy-button"
+                  onclick="copyCode('windows-run-code')"
+                >
+                  Копировать
+                </button>
+                <pre id="windows-run-code">
 docker-compose pull
 docker-compose up -d</pre
                 >
               </div>
-              <p class="note">
-                Чтобы вставить текст в черное окно, нажмите правой кнопкой мыши
-                и выберите "Вставить"
-              </p>
-              <img
-                src="windows-paste-commands.png"
-                alt="Вставка команд Windows"
-                class="screenshot"
-              />
             </li>
           </ol>
         </div>
@@ -369,94 +415,128 @@ docker-compose up -d</pre
 
       <div class="mac-instructions">
         <div class="step">
-          <h2>
-            <span class="step-number">3</span>
-            Запуск на Mac
-          </h2>
-
+          <h2><span class="step-number">3</span> Запуск на Mac</h2>
           <ol>
             <li>
-              Откройте программу Terminal:
-              <ul>
+              Откройте Terminal одним из способов:
+              <ul style="margin-bottom: 15px">
                 <li>
-                  Нажмите <span class="keyboard-key">⌘</span> +
-                  <span class="keyboard-key">Пробел</span>
+                  <strong>Способ 1 (рекомендуемый):</strong>
+                  <ol>
+                    <li>
+                      Нажмите <span class="keyboard-key">⌘</span> +
+                      <span class="keyboard-key">Пробел</span>
+                    </li>
+                    <li>Введите "Terminal" в строке поиска</li>
+                    <li>
+                      Нажмите <span class="keyboard-key">Return</span> (Enter)
+                    </li>
+                  </ol>
                 </li>
-                <li>Напишите "Terminal" и нажмите Enter</li>
+                <li>
+                  <strong>Способ 2:</strong>
+                  <ol>
+                    <li>Откройте Finder</li>
+                    <li>Перейдите в "Программы" → "Утилиты"</li>
+                    <li>Найдите и запустите "Terminal"</li>
+                  </ol>
+                </li>
               </ul>
-              <img
-                src="mac-open-terminal.png"
-                alt="Открытие Terminal на Mac"
-                class="screenshot"
-              />
             </li>
             <li>
-              Перетащите папку "YouTube Parser" в окно Terminal<br />
-              <img
-                src="mac-drag-folder.png"
-                alt="Перетаскивание папки в Terminal"
-                class="screenshot"
-              />
-            </li>
-            <li>Нажмите Enter на клавиатуре</li>
-            <li>
-              Скопируйте и вставьте эти команды:<br />
+              Выполните команду в Terminal для перехода в папку:
+              <div class="alert info" style="margin: 10px 0">
+                <strong>Пошаговая инструкция:</strong>
+                <ol style="margin-top: 5px">
+                  1. Нажмите правой кнопкой мыши (или Control + клик) на папку
+                  "YouTube Parser" на рабочем столе<br />
+                  2. Удерживая клавишу Option (⌥), выберите "Копировать путь"<br />
+                  3. Введите команду
+                  <code>cd</code>
+                  и пробел в Terminal<br />
+                  4. Вставьте скопированный путь (⌘ + V)<br />
+                  5. Нажмите Return (Enter) для выполнения команды
+                </ol>
+              </div>
               <div class="code-block">
-                <button class="copy-button" onclick="copyCode('mac-code')">
+                <button class="copy-button" onclick="copyCode('mac-cd-code')">
                   Копировать
                 </button>
-                <pre id="mac-code">
+                <pre id="mac-cd-code">
+cd "/Users/ИмяПользователя/Desktop/YouTube Parser"</pre
+                >
+              </div>
+              <div class="alert info" style="margin-top: 10px">
+                <strong>Примечание:</strong> В вашем случае путь будет другим,
+                зависящим от имени пользователя и расположения папки.
+              </div>
+            </li>
+            <li>
+              Запустите приложение:
+              <div class="alert info" style="margin: 10px 0">
+                <strong>Как запустить:</strong>
+                <ol style="margin-top: 5px">
+                  1. Скопируйте команды ниже, нажав кнопку "Копировать"<br />
+                  2. Вставьте их в Terminal (⌘ + V)<br />
+                  3. Нажмите Return (Enter) для выполнения<br />
+                  4. Дождитесь завершения установки (это может занять несколько
+                  минут)
+                </ol>
+              </div>
+              <div class="code-block">
+                <button class="copy-button" onclick="copyCode('mac-run-code')">
+                  Копировать
+                </button>
+                <pre id="mac-run-code">
 docker-compose pull
 docker-compose up -d</pre
                 >
               </div>
-              <p class="note">
-                Чтобы вставить текст в Terminal, нажмите
-                <span class="keyboard-key">⌘</span> +
-                <span class="keyboard-key">V</span>
-              </p>
-              <img
-                src="mac-paste-commands.png"
-                alt="Вставка команд Mac"
-                class="screenshot"
-              />
             </li>
           </ol>
         </div>
       </div>
 
       <div class="step">
-        <h2>
-          <span class="step-number">4</span>
-          Откройте приложение
-        </h2>
-
+        <h2><span class="step-number">4</span> Откройте приложение</h2>
         <ol>
-          <li>Откройте любой браузер (например, Chrome или Safari)</li>
           <li>
-            Скопируйте и вставьте эту ссылку в адресную строку браузера:<br />
-            <div class="code-block">
-              <button class="copy-button" onclick="copyCode('url-code')">
-                Копировать
-              </button>
-              <pre id="url-code">http://localhost:8101</pre>
+            Нажмите на ссылку, чтобы открыть приложение:
+            <div style="text-align: center; margin: 20px 0">
+              <a
+                href="http://localhost:8101"
+                target="_blank"
+                style="
+                  display: inline-block;
+                  background: #2196f3;
+                  color: white;
+                  padding: 12px 24px;
+                  text-decoration: none;
+                  border-radius: 8px;
+                  font-size: 1.1em;
+                  transition: all 0.3s;
+                "
+              >
+                Открыть YouTube Comments Parser
+              </a>
             </div>
-            <img
-              src="browser-address.png"
-              alt="Адресная строка браузера"
-              class="screenshot"
-            />
           </li>
         </ol>
 
-        <div class="warning">
+        <div class="alert success">
+          <strong>Готово!</strong> Теперь вы можете пользоваться приложением.
+        </div>
+
+        <div class="alert warning">
           <strong>Если страница не открывается:</strong>
           <ol>
             <li>
-              Проверьте, запущен ли Docker Desktop (должен быть значок кита)
+              Проверьте, запущен ли Docker Desktop (должен быть значок кита 🐳)
             </li>
-            <li>Подождите 30 секунд и попробуйте обновить страницу</li>
-            <li>Если всё равно не работает, перезапустите Docker Desktop</li>
+            <li>Подождите 30 секунд и обновите страницу</li>
+            <li>
+              Если не помогло, перезапустите Docker Desktop и повторите шаг 3
+            </li>
           </ol>
         </div>
       </div>
@@ -465,9 +545,16 @@ docker-compose up -d</pre
         <h2>❓ Нужна помощь?</h2>
         <p>Если что-то не получается:</p>
         <ol>
-          <li>Напишите нам на почту support@example.com</li>
-          <li>Или в телеграм @support_bot</li>
-          <li>Мы поможем вам установить программу</li>
+          <li>
+            Напишите мне в телеграм
+            <a
+              href="https://t.me/teamokha"
+              target="_blank"
+              style="color: #2196f3; text-decoration: none; font-weight: 500"
+              >@teamokha</a
+            >
+          </li>
+          <li>Я помогу вам установить программу</li>
         </ol>
       </div>
     </div>
@@ -515,6 +602,11 @@ docker-compose up -d</pre
 
       // Показываем инструкции для ОС пользователя
       selectOS(detectOS());
+
+      // Показываем Windows по умолчанию
+      window.onload = function () {
+        selectOS('windows');
+      };
     </script>
   </body>
 </html>
