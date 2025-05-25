@@ -265,7 +265,79 @@
         </div>
         <div class="step">
           <h2>
-            <span class="step-number">2</span> Скачивание и запуск приложения
+            <span class="step-number">2</span> Автоматическое получение
+            обновлений
+          </h2>
+          <div class="alert info" style="margin-bottom: 16px">
+            <!-- <p>Этот шаг установит специальный контейнер, который:</p>
+            <ul style="margin-top: 10px; margin-bottom: 16px">
+              <li>
+                Проверяет наличие обновлений для всех программ, которые вы
+                получаете от меня и устанавливает их
+              </li>
+              <li>
+                Это гарантирует, что вы всегда работаете с самой последней
+                версией программ. Если я выпущу обновление с новым функционалом
+                или исправлением какой-то ошибки, оно будет автоматически
+                установлено
+              </li>
+            </ul> -->
+            <p style="margin-top: 10px">
+              Если в вашем Docker Desktop уже отображается контейнер как на
+              картинке, тогда пропустите этот шаг и переходите к шагу 3.
+            </p>
+            <img
+              src="images/updates-checker.png"
+              alt="Updates Checker Container"
+              style="
+                max-width: 100%;
+                margin-top: 10px;
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+              "
+            />
+          </div>
+          <ol>
+            <li>
+              Скопируйте и вставьте в PowerShell эту команду и нажмите Enter:
+              <div
+                style="
+                  display: flex;
+                  justify-content: flex-end;
+                  margin-bottom: 4px;
+                "
+              >
+                <button
+                  class="copy-button"
+                  onclick="copyCode('update-checker-win')"
+                >
+                  Копировать
+                </button>
+              </div>
+              <div class="code-block">
+                <pre id="update-checker-win">
+docker run --detach --name updates-checker -e WATCHTOWER_POLL_INTERVAL=60 --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower</pre
+                >
+              </div>
+            </li>
+          </ol>
+          <p
+            style="
+              margin-top: 10px;
+              color: #1565c0;
+              background: #e3f2fd;
+              border: 1px solid #90caf9;
+              border-radius: 4px;
+              padding: 12px;
+            "
+          >
+            После вставки команды в PowerShell дождитесь её завершения. Обычно
+            это занимает несколько секунд.
+          </p>
+        </div>
+        <div class="step">
+          <h2>
+            <span class="step-number">3</span> Скачивание и запуск приложения
           </h2>
           <ol>
             <li>
@@ -332,7 +404,7 @@ docker run -d --name youtube-parser -p 8101:8101 -e HOSTNAME=0.0.0.0 --restart u
           </p>
         </div>
         <div class="step">
-          <h2><span class="step-number">3</span> Откройте приложение</h2>
+          <h2><span class="step-number">4</span> Откройте приложение</h2>
           <ol>
             <li>
               Нажмите на ссылку, чтобы открыть приложение:
@@ -407,7 +479,83 @@ docker run -d --name youtube-parser -p 8101:8101 -e HOSTNAME=0.0.0.0 --restart u
           </div>
         </div>
         <div class="step">
-          <h2><span class="step-number">2</span> Запуск на Mac</h2>
+          <h2>
+            <span class="step-number">2</span> Автоматическое получение
+            обновлений
+          </h2>
+          <div class="alert info" style="margin-bottom: 16px">
+            <!-- <p>Этот шаг установит специальный контейнер, который:</p>
+            <ul style="margin-top: 10px; margin-bottom: 16px">
+              <li>
+                Проверяет наличие обновлений для всех программ, которые вы
+                получаете от меня и устанавливает их
+              </li>
+              <li>
+                Это гарантирует, что вы всегда работаете с самой последней
+                версией программ. Если я выпущу обновление с новым функционалом
+                или исправлением какой-то ошибки, оно будет автоматически
+                установлено
+              </li>
+            </ul> -->
+            <p>
+              Установка этого контейнера настоятельно рекомендуется для
+              бесперебойной работы приложения.
+            </p>
+            <p style="margin-top: 10px">
+              Если в вашем Docker Desktop уже отображается контейнер как на
+              картинке, тогда пропустите этот шаг и переходите к шагу 3.
+            </p>
+            <img
+              src="images/updates-checker.png"
+              alt="Updates Checker Container"
+              style="
+                max-width: 100%;
+                margin-top: 10px;
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+              "
+            />
+          </div>
+          <ol>
+            <li>
+              Скопируйте и вставьте следующую команду:
+              <div
+                style="
+                  display: flex;
+                  justify-content: flex-end;
+                  margin-bottom: 4px;
+                "
+              >
+                <button
+                  class="copy-button"
+                  onclick="copyCode('update-checker-mac')"
+                >
+                  Копировать
+                </button>
+              </div>
+              <div class="code-block">
+                <pre id="update-checker-mac">
+docker run --detach --name updates-checker -e WATCHTOWER_POLL_INTERVAL=60 --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower</pre
+                >
+              </div>
+            </li>
+          </ol>
+          <p
+            style="
+              margin-top: 10px;
+              color: #1565c0;
+              background: #e3f2fd;
+              border: 1px solid #90caf9;
+              border-radius: 4px;
+              padding: 12px;
+            "
+          >
+            После вставки команды в терминал дождитесь её завершения. Обычно это
+            занимает несколько секунд.
+          </p>
+        </div>
+        <div class="step">
+          <h2><span class="step-number">3</span> Запуск на Mac</h2>
           <ol>
             <li>
               Откройте Terminal:
@@ -454,7 +602,7 @@ docker run -d --name youtube-parser -p 8101:8101 -e HOSTNAME=0.0.0.0 --restart u
           </p>
         </div>
         <div class="step">
-          <h2><span class="step-number">3</span> Откройте приложение</h2>
+          <h2><span class="step-number">4</span> Откройте приложение</h2>
           <ol>
             <li>
               Нажмите на ссылку, чтобы открыть приложение:
