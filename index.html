@@ -38,25 +38,28 @@
         align-items: center;
       }
       .code-block {
+        position: relative;
         background: #f8f9fa;
         padding: 15px;
         border-radius: 5px;
         font-family: monospace;
-        position: relative;
         overflow-x: auto;
         margin: 15px 0;
       }
+      .code-block pre {
+        margin: 0;
+        padding-right: 0;
+      }
       .copy-button {
-        position: absolute;
-        right: 10px;
-        top: 10px;
         background: #2196f3;
         color: white;
         border: none;
-        padding: 5px 10px;
+        padding: 5px 16px;
         border-radius: 4px;
         cursor: pointer;
         transition: background 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        font-size: 1em;
       }
       .copy-button:hover {
         background: #1976d2;
@@ -181,365 +184,281 @@
         </button>
       </div>
 
-      <div class="step">
-        <h2><span class="step-number">1</span> Установите Docker Desktop</h2>
-        <ol>
-          <li>
-            Скачайте Docker Desktop с официального сайта:
-            <a
-              href="https://www.docker.com/products/docker-desktop"
-              target="_blank"
-              >https://www.docker.com/products/docker-desktop</a
-            >
-          </li>
-          <li>Запустите скачанный установщик и следуйте инструкциям</li>
-          <li>После установки перезагрузите компьютер</li>
-          <li>
-            Запустите Docker Desktop:
-            <ul>
-              <li>
-                Windows: нажмите кнопку "Пуск", найдите и запустите Docker
-                Desktop
-              </li>
-              <li>
-                Mac: откройте папку "Программы" и запустите Docker Desktop
-              </li>
-            </ul>
-          </li>
-        </ol>
-        <div class="alert warning">
-          <strong>Важно:</strong> Дождитесь полного запуска Docker Desktop. В
-          правом нижнем углу (Windows) или вверху (Mac) появится значок кита 🐳
-        </div>
-      </div>
-
-      <div class="step">
-        <h2><span class="step-number">2</span> Создайте рабочую папку</h2>
-        <ol>
-          <li>Создайте на рабочем столе папку с названием "YouTube Parser"</li>
-          <li>
-            Скачайте файл настроек и поместите его в созданную папку:
-            <p style="text-align: center; margin: 20px 0">
-              <a
-                href="docker-compose.yml"
-                download
-                class="download-button"
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                  background: #4caf50;
-                  color: white;
-                  padding: 12px 24px;
-                  text-decoration: none;
-                  border-radius: 8px;
-                  font-size: 1.1em;
-                  transition: all 0.3s;
-                "
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  style="margin-right: 8px"
-                >
-                  <path
-                    d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
-                    fill="currentColor"
-                  />
-                </svg>
-                Скачать файл настроек
-              </a>
-            </p>
-          </li>
-        </ol>
-      </div>
-
       <div class="windows-instructions">
         <div class="step">
-          <h2><span class="step-number">3</span> Запуск на Windows</h2>
+          <h2><span class="step-number">1</span> Установите Docker Desktop</h2>
           <ol>
             <li>
-              Откройте PowerShell любым из способов:
-              <ul style="margin-bottom: 15px">
+              Скачайте Docker Desktop с официального сайта:
+              <a
+                href="https://www.docker.com/products/docker-desktop"
+                target="_blank"
+                >https://www.docker.com/products/docker-desktop</a
+              >
+              <div class="alert info" style="margin-top: 10px">
+                На сайте Docker Desktop есть две версии для скачивания:
+                <b>AMD64</b> и <b>ARM64</b>.<br />
+                Чтобы узнать, какая версия подходит для вашего компьютера,
+                откройте PowerShell:
+                <ul>
+                  <li>
+                    Нажмите правой кнопкой мыши на кнопку «Пуск» и выберите
+                    «Windows PowerShell» или «Windows Terminal»
+                  </li>
+                  <li>
+                    Или нажмите
+                    <span
+                      class="keyboard-key"
+                      style="display: inline-flex; align-items: center"
+                      ><svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 88 88"
+                        style="margin-right: 2px"
+                      >
+                        <path
+                          d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
+                          fill="#00a4ef"
+                        /></svg
+                      >Win</span
+                    >
+                    + X и выберите соответствующий пункт
+                  </li>
+                </ul>
+                Скопируйте команду ниже, вставьте в PowerShell и нажмите Enter:
+                <div class="code-block" style="margin-top: 10px">
+                  <button class="copy-button" onclick="copyCode('arch-win')">
+                    Копировать
+                  </button>
+                  <pre id="arch-win">
+[System.Environment]::GetEnvironmentVariable('PROCESSOR_ARCHITECTURE')</pre
+                  >
+                </div>
+                <b>Результат:</b> <br />
+                <b>AMD64</b> — скачивайте версию <b>AMD64</b>.<br />
+                <b>ARM64</b> — скачивайте версию <b>ARM64</b>.
+              </div>
+            </li>
+            <li>
+              Запустите скачанный установщик и следуйте инструкциям. Оставьте
+              все настройки по умолчанию и дайте разрешение на установку всех
+              необходимых компонентов.
+            </li>
+            <li>После установки перезагрузите компьютер</li>
+            <li>
+              Запустите Docker Desktop:
+              <ul>
                 <li>
-                  <strong>Способ 1 (рекомендуемый):</strong>
-                  <ol>
-                    <li>
-                      Нажмите правой кнопкой мыши на кнопку "Пуск" (или клавиши
-                      <span
-                        class="keyboard-key"
-                        style="display: inline-flex; align-items: center"
-                      >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 88 88"
-                          style="margin-right: 2px"
-                        >
-                          <path
-                            d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
-                            fill="#00a4ef"
-                          />
-                        </svg>
-                        Win</span
-                      >
-                      + <span class="keyboard-key">X</span>)
-                    </li>
-                    <li>
-                      В появившемся меню выберите "Windows PowerShell" или
-                      "Windows Terminal"
-                    </li>
-                  </ol>
-                </li>
-                <li>
-                  <strong>Способ 2:</strong>
-                  <ol>
-                    <li>
-                      Нажмите
-                      <span
-                        class="keyboard-key"
-                        style="display: inline-flex; align-items: center"
-                      >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 88 88"
-                          style="margin-right: 2px"
-                        >
-                          <path
-                            d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
-                            fill="#00a4ef"
-                          />
-                        </svg>
-                        Win</span
-                      >
-                      + <span class="keyboard-key">R</span>
-                    </li>
-                    <li>Введите <code>powershell</code></li>
-                    <li>Нажмите Enter</li>
-                  </ol>
-                </li>
-                <li>
-                  <strong>Способ 3:</strong>
-                  <ol>
-                    <li>
-                      Нажмите кнопку "Пуск"
-                      <span style="color: #666"
-                        >(кнопка с логотипом Windows
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 88 88"
-                          style="vertical-align: middle"
-                        >
-                          <path
-                            d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"
-                            fill="#00a4ef"
-                          />
-                        </svg>
-                        в левом нижнем углу экрана)</span
-                      >
-                    </li>
-                    <li>Начните вводить "PowerShell"</li>
-                    <li>
-                      Нажмите на "Windows PowerShell" в результатах поиска
-                    </li>
-                  </ol>
+                  Нажмите кнопку "Пуск", найдите и запустите Docker Desktop
                 </li>
               </ul>
-              <div class="alert info">
-                <strong>Примечание:</strong> Если вы видите "Windows Terminal"
-                вместо "PowerShell" - это нормально, выбирайте его. Windows
-                Terminal - это новая, улучшенная версия командной строки.
-              </div>
             </li>
+          </ol>
+          <div class="alert warning">
+            <strong>Важно:</strong> Дождитесь полного запуска Docker Desktop. В
+            правом нижнем углу (Windows) появится значок кита 🐳
+          </div>
+        </div>
+        <div class="step">
+          <h2>
+            <span class="step-number">2</span> Скачивание и запуск приложения
+          </h2>
+          <ol>
             <li>
-              Выполните команду в PowerShell для перехода в папку:
-              <div class="alert info" style="margin: 10px 0">
-                <strong>Пошаговая инструкция:</strong>
-                <ol style="margin-top: 5px">
-                  1. Нажмите правой кнопкой мыши на папку "YouTube Parser" на
-                  рабочем столе<br />
-                  2. Выберите "Копировать как путь" (или "Copy as path" в
-                  английской Windows)<br />
-                  3. Введите команду
-                  <code>cd</code>
-                  и пробел в PowerShell<br />
-                  4. Вставьте скопированный путь (правый клик → Вставить)<br />
-                  5. Нажмите Enter для выполнения команды
-                </ol>
-              </div>
-              <div class="code-block">
-                <button
-                  class="copy-button"
-                  onclick="copyCode('windows-cd-code')"
-                >
+              Скопируйте и вставьте в PowerShell следующую команду и нажмите
+              Enter:
+              <div
+                style="
+                  display: flex;
+                  justify-content: flex-end;
+                  margin-bottom: 4px;
+                "
+              >
+                <button class="copy-button" onclick="copyCode('run-code-win')">
                   Копировать
                 </button>
-                <pre id="windows-cd-code">
-cd "C:\Users\ИмяПользователя\Desktop\YouTube Parser"</pre
-                >
-              </div>
-              <div class="alert info" style="margin-top: 10px">
-                <strong>Примечание:</strong> В вашем случае путь будет другим,
-                зависящим от имени пользователя и расположения папки.
-              </div>
-            </li>
-            <li>
-              Запустите приложение:
-              <div class="alert info" style="margin: 10px 0">
-                <strong>Как запустить:</strong>
-                <ol style="margin-top: 5px">
-                  1. Скопируйте команды ниже, нажав кнопку "Копировать"<br />
-                  2. Вставьте их в PowerShell (правый клик → Вставить)<br />
-                  3. Нажмите Enter для выполнения<br />
-                  4. Дождитесь завершения установки (это может занять несколько
-                  минут)
-                </ol>
               </div>
               <div class="code-block">
-                <button
-                  class="copy-button"
-                  onclick="copyCode('windows-run-code')"
-                >
-                  Копировать
-                </button>
-                <pre id="windows-run-code">
-docker-compose pull
-docker-compose up -d</pre
+                <pre id="run-code-win">
+docker run -d -p 8101:8101 -e HOSTNAME=0.0.0.0 --restart unless-stopped timponomarev/youtube-comments-app:latest</pre
                 >
               </div>
             </li>
           </ol>
+          <p
+            style="
+              margin-top: 10px;
+              color: #1565c0;
+              background: #e3f2fd;
+              border: 1px solid #90caf9;
+              border-radius: 4px;
+              padding: 12px;
+            "
+          >
+            После вставки команды в PowerShell дождитесь её завершения. Обычно
+            это занимает несколько секунд.
+          </p>
+        </div>
+        <div class="step">
+          <h2><span class="step-number">3</span> Откройте приложение</h2>
+          <ol>
+            <li>
+              Нажмите на ссылку, чтобы открыть приложение:
+              <div style="text-align: center; margin: 20px 0">
+                <a
+                  href="http://localhost:8101"
+                  target="_blank"
+                  style="
+                    display: inline-block;
+                    background: #2196f3;
+                    color: white;
+                    padding: 12px 24px;
+                    text-decoration: none;
+                    border-radius: 8px;
+                    font-size: 1.1em;
+                    transition: all 0.3s;
+                  "
+                >
+                  Открыть YouTube Comments Parser
+                </a>
+              </div>
+            </li>
+          </ol>
+          <div class="alert success">
+            <strong>Готово!</strong> Теперь вы можете пользоваться приложением.
+          </div>
+          <div class="alert warning">
+            <strong>Если страница не открывается:</strong>
+            <ol>
+              <li>
+                Проверьте, запущен ли Docker Desktop (должен быть значок кита
+                🐳)
+              </li>
+              <li>Подождите 30 секунд и обновите страницу</li>
+              <li>
+                Если не помогло, перезапустите Docker Desktop и повторите
+                команду
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
 
       <div class="mac-instructions">
         <div class="step">
-          <h2><span class="step-number">3</span> Запуск на Mac</h2>
+          <h2><span class="step-number">1</span> Установите Docker Desktop</h2>
           <ol>
             <li>
-              Откройте Terminal одним из способов:
-              <ul style="margin-bottom: 15px">
+              Скачайте Docker Desktop с официального сайта:
+              <a
+                href="https://www.docker.com/products/docker-desktop"
+                target="_blank"
+                >https://www.docker.com/products/docker-desktop</a
+              >
+            </li>
+            <li>Запустите скачанный установщик и следуйте инструкциям</li>
+            <li>После установки перезагрузите компьютер</li>
+            <li>
+              Запустите Docker Desktop:
+              <ul>
+                <li>Откройте папку "Программы" и запустите Docker Desktop</li>
+              </ul>
+            </li>
+          </ol>
+          <div class="alert warning">
+            <strong>Важно:</strong> Дождитесь полного запуска Docker Desktop.
+            Вверху (Mac) появится значок кита 🐳
+          </div>
+        </div>
+        <div class="step">
+          <h2><span class="step-number">2</span> Запуск на Mac</h2>
+          <ol>
+            <li>
+              Откройте Terminal:
+              <ul>
                 <li>
-                  <strong>Способ 1 (рекомендуемый):</strong>
-                  <ol>
-                    <li>
-                      Нажмите <span class="keyboard-key">⌘</span> +
-                      <span class="keyboard-key">Пробел</span>
-                    </li>
-                    <li>Введите "Terminal" в строке поиска</li>
-                    <li>
-                      Нажмите <span class="keyboard-key">Return</span> (Enter)
-                    </li>
-                  </ol>
-                </li>
-                <li>
-                  <strong>Способ 2:</strong>
-                  <ol>
-                    <li>Откройте Finder</li>
-                    <li>Перейдите в "Программы" → "Утилиты"</li>
-                    <li>Найдите и запустите "Terminal"</li>
-                  </ol>
+                  Нажмите <span class="keyboard-key">⌘</span> +
+                  <span class="keyboard-key">Пробел</span>, введите "Terminal" и
+                  нажмите <span class="keyboard-key">Enter</span>
                 </li>
               </ul>
             </li>
             <li>
-              Выполните команду в Terminal для перехода в папку:
-              <div class="alert info" style="margin: 10px 0">
-                <strong>Пошаговая инструкция:</strong>
-                <ol style="margin-top: 5px">
-                  1. Нажмите правой кнопкой мыши (или Control + клик) на папку
-                  "YouTube Parser" на рабочем столе<br />
-                  2. Удерживая клавишу Option (⌥), выберите "Копировать путь"<br />
-                  3. Введите команду
-                  <code>cd</code>
-                  и пробел в Terminal<br />
-                  4. Вставьте скопированный путь (⌘ + V)<br />
-                  5. Нажмите Return (Enter) для выполнения команды
-                </ol>
-              </div>
-              <div class="code-block">
-                <button class="copy-button" onclick="copyCode('mac-cd-code')">
-                  Копировать
-                </button>
-                <pre id="mac-cd-code">
-cd "/Users/ИмяПользователя/Desktop/YouTube Parser"</pre
-                >
-              </div>
-              <div class="alert info" style="margin-top: 10px">
-                <strong>Примечание:</strong> В вашем случае путь будет другим,
-                зависящим от имени пользователя и расположения папки.
-              </div>
-            </li>
-            <li>
-              Запустите приложение:
-              <div class="alert info" style="margin: 10px 0">
-                <strong>Как запустить:</strong>
-                <ol style="margin-top: 5px">
-                  1. Скопируйте команды ниже, нажав кнопку "Копировать"<br />
-                  2. Вставьте их в Terminal (⌘ + V)<br />
-                  3. Нажмите Return (Enter) для выполнения<br />
-                  4. Дождитесь завершения установки (это может занять несколько
-                  минут)
-                </ol>
-              </div>
-              <div class="code-block">
-                <button class="copy-button" onclick="copyCode('mac-run-code')">
-                  Копировать
-                </button>
-                <pre id="mac-run-code">
-docker-compose pull
-docker-compose up -d</pre
-                >
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="step">
-        <h2><span class="step-number">4</span> Откройте приложение</h2>
-        <ol>
-          <li>
-            Нажмите на ссылку, чтобы открыть приложение:
-            <div style="text-align: center; margin: 20px 0">
-              <a
-                href="http://localhost:8101"
-                target="_blank"
+              Скопируйте и вставьте следующую команду:
+              <div
                 style="
-                  display: inline-block;
-                  background: #2196f3;
-                  color: white;
-                  padding: 12px 24px;
-                  text-decoration: none;
-                  border-radius: 8px;
-                  font-size: 1.1em;
-                  transition: all 0.3s;
+                  display: flex;
+                  justify-content: flex-end;
+                  margin-bottom: 4px;
                 "
               >
-                Открыть YouTube Comments Parser
-              </a>
-            </div>
-          </li>
-        </ol>
-
-        <div class="alert success">
-          <strong>Готово!</strong> Теперь вы можете пользоваться приложением.
-        </div>
-
-        <div class="alert warning">
-          <strong>Если страница не открывается:</strong>
-          <ol>
-            <li>
-              Проверьте, запущен ли Docker Desktop (должен быть значок кита 🐳)
-            </li>
-            <li>Подождите 30 секунд и обновите страницу</li>
-            <li>
-              Если не помогло, перезапустите Docker Desktop и повторите шаг 3
+                <button class="copy-button" onclick="copyCode('run-code-mac')">
+                  Копировать
+                </button>
+              </div>
+              <div class="code-block">
+                <pre id="run-code-mac">
+docker run -d -p 8101:8101 -e HOSTNAME=0.0.0.0 --restart unless-stopped timponomarev/youtube-comments-app:latest</pre
+                >
+              </div>
             </li>
           </ol>
+          <p
+            style="
+              margin-top: 10px;
+              color: #1565c0;
+              background: #e3f2fd;
+              border: 1px solid #90caf9;
+              border-radius: 4px;
+              padding: 12px;
+            "
+          >
+            После вставки команды в терминал дождитесь её завершения. Обычно это
+            занимает несколько секунд.
+          </p>
+        </div>
+        <div class="step">
+          <h2><span class="step-number">3</span> Откройте приложение</h2>
+          <ol>
+            <li>
+              Нажмите на ссылку, чтобы открыть приложение:
+              <div style="text-align: center; margin: 20px 0">
+                <a
+                  href="http://localhost:8101"
+                  target="_blank"
+                  style="
+                    display: inline-block;
+                    background: #2196f3;
+                    color: white;
+                    padding: 12px 24px;
+                    text-decoration: none;
+                    border-radius: 8px;
+                    font-size: 1.1em;
+                    transition: all 0.3s;
+                  "
+                >
+                  Открыть YouTube Comments Parser
+                </a>
+              </div>
+            </li>
+          </ol>
+          <div class="alert success">
+            <strong>Готово!</strong> Теперь вы можете пользоваться приложением.
+          </div>
+          <div class="alert warning">
+            <strong>Если страница не открывается:</strong>
+            <ol>
+              <li>
+                Проверьте, запущен ли Docker Desktop (должен быть значок кита
+                🐳)
+              </li>
+              <li>Подождите 30 секунд и обновите страницу</li>
+              <li>
+                Если не помогло, перезапустите Docker Desktop и повторите
+                команду
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
 
